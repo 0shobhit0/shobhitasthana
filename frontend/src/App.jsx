@@ -15,47 +15,47 @@ import Testi4 from "../src/images/testi4.jpg"
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [loading, setLoading] = useState(false);
-  const [responseMessage, setResponseMessage] = useState("");
+  // const [formData, setFormData] = useState({
+  //   name: "",
+  //   email: "",
+  //   subject: "",
+  //   message: "",
+  // });
+  // const [loading, setLoading] = useState(false);
+  // const [responseMessage, setResponseMessage] = useState("");
   
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // const handleChange = (e) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
 
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setResponseMessage("");
+  // // Handle form submission
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   setResponseMessage("");
 
-    try {
-      const res = await fetch("http://localhost:5000/messages", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+  //   try {
+  //     const res = await fetch("http://localhost:5000/messages", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(formData),
+  //     });
 
-      const data = await res.json();
-      if (res.ok) {
-        setResponseMessage("Message sent successfully!");
-        setFormData({ name: "", email: "", subject: "", message: "" });
-      } else {
-        setResponseMessage(data.error || "Something went wrong.");
-      }
-    } catch (error) {
-      setResponseMessage("Server error. Please try again.");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     const data = await res.json();
+  //     if (res.ok) {
+  //       setResponseMessage("Message sent successfully!");
+  //       setFormData({ name: "", email: "", subject: "", message: "" });
+  //     } else {
+  //       setResponseMessage(data.error || "Something went wrong.");
+  //     }
+  //   } catch (error) {
+  //     setResponseMessage("Server error. Please try again.");
+  //      setFormData({ name: "", email: "", subject: "", message: "" });
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -468,54 +468,34 @@ function App() {
               </div>
 
               <div>
-              <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid md:grid-cols-2 gap-4">
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          className="bg-[#222] p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={handleChange}
-          className="bg-[#222] p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-      </div>
-      <input
-        type="text"
-        name="subject"
-        placeholder="Subject"
-        value={formData.subject}
-        onChange={handleChange}
-        className="w-full bg-[#222] p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      />
-      <textarea
-        name="message"
-        placeholder="Message"
-        rows={5}
-        value={formData.message}
-        onChange={handleChange}
-        className="w-full bg-[#222] p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      ></textarea>
-      <button
-        type="submit"
-        className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors"
-        disabled={loading}
-      >
-        {loading ? "Sending..." : "Send Message"}
-      </button>
-     
-    </form>
+              <form className="space-y-4">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      className="bg-[#222] p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Your Email"
+                      className="bg-[#222] p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Subject"
+                    className="w-full bg-[#222] p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <textarea
+                    placeholder="Message"
+                    rows={5}
+                    className="w-full bg-[#222] p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  ></textarea>
+                  <button className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors">
+                    Send Message
+                  </button>
+                </form>
+
               </div>
             </div>
           </div>
