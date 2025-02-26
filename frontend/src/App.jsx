@@ -51,6 +51,7 @@ function App() {
       }
     } catch (error) {
       setResponseMessage("Server error. Please try again.");
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } finally {
       setLoading(false);
     }
